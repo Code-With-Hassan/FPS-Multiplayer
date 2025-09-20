@@ -29,9 +29,9 @@ FPS-Multiplayer/
 
 ## 🛠️ Tech Stack
 
-- **Engine:** Godot / Unity / Unreal (update based on your engine)
-- **Networking:** ENet / Mirror / Photon (update based on your choice)
-- **Language:** C# / GDScript / C++
+- **Engine:** Godot
+- **Networking:** Photon
+- **Language:** GDScript
 - **Version Control:** Git & GitHub
 
 ---
