@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cijk0lollh11b"
 path.s3tc="res://.godot/imported/Poliigon_BrickWallReclaimed_8320_BaseColor.jpg-358da44a875c6f617d8e02f842594ead.s3tc.ctex"
+path.etc2="res://.godot/imported/Poliigon_BrickWallReclaimed_8320_BaseColor.jpg-358da44a875c6f617d8e02f842594ead.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Textures/BricksWall/Poliigon_BrickWallReclaimed_8320_BaseColor.jpg"
-dest_files=["res://.godot/imported/Poliigon_BrickWallReclaimed_8320_BaseColor.jpg-358da44a875c6f617d8e02f842594ead.s3tc.ctex"]
+dest_files=["res://.godot/imported/Poliigon_BrickWallReclaimed_8320_BaseColor.jpg-358da44a875c6f617d8e02f842594ead.s3tc.ctex", "res://.godot/imported/Poliigon_BrickWallReclaimed_8320_BaseColor.jpg-358da44a875c6f617d8e02f842594ead.etc2.ctex"]
 
 [params]
 

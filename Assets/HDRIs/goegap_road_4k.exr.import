@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://by3mxmplk16i7"
 path.bptc="res://.godot/imported/goegap_road_4k.exr-ec83bd0f6caa56758faf1640316270c6.bptc.ctex"
+path.astc="res://.godot/imported/goegap_road_4k.exr-ec83bd0f6caa56758faf1640316270c6.astc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/HDRIs/goegap_road_4k.exr"
-dest_files=["res://.godot/imported/goegap_road_4k.exr-ec83bd0f6caa56758faf1640316270c6.bptc.ctex"]
+dest_files=["res://.godot/imported/goegap_road_4k.exr-ec83bd0f6caa56758faf1640316270c6.bptc.ctex", "res://.godot/imported/goegap_road_4k.exr-ec83bd0f6caa56758faf1640316270c6.astc.ctex"]
 
 [params]
 

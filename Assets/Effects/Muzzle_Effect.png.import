@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://g0v6f0xjh00i"
 path.s3tc="res://.godot/imported/Muzzle_Effect.png-cab1b40c35b58ca8e1ac9bf9ae7ce96b.s3tc.ctex"
+path.etc2="res://.godot/imported/Muzzle_Effect.png-cab1b40c35b58ca8e1ac9bf9ae7ce96b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Effects/Muzzle_Effect.png"
-dest_files=["res://.godot/imported/Muzzle_Effect.png-cab1b40c35b58ca8e1ac9bf9ae7ce96b.s3tc.ctex"]
+dest_files=["res://.godot/imported/Muzzle_Effect.png-cab1b40c35b58ca8e1ac9bf9ae7ce96b.s3tc.ctex", "res://.godot/imported/Muzzle_Effect.png-cab1b40c35b58ca8e1ac9bf9ae7ce96b.etc2.ctex"]
 
 [params]
 
