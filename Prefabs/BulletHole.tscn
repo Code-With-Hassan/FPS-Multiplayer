@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7ught60s5ld6"]
+
+[ext_resource type="Script" path="res://Scripts/bullet_hole.gd" id="1_1f1kh"]
+[ext_resource type="Texture2D" uid="uid://cwu0drx554mrg" path="res://Assets/Effects/bullet_hole.png" id="1_ugb28"]
+
+[node name="BulletHole" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0100656, 0)
+script = ExtResource("1_1f1kh")
+
+[node name="BulletHoleDecal" type="Decal" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+size = Vector3(0.25, 0.25, 0.25)
+texture_albedo = ExtResource("1_ugb28")

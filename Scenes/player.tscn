@@ -1,0 +1,184 @@
+[gd_scene load_steps=12 format=3 uid="uid://dowje56rve8dq"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_g10d1"]
+[ext_resource type="Script" path="res://Scripts/CameraPivot.gd" id="2_2xheg"]
+[ext_resource type="Script" path="res://addons/Virtual Joystick/joystick.gd" id="3_e81cw"]
+[ext_resource type="PackedScene" uid="uid://63yg2ehhic0r" path="res://Prefabs/touch_button.tscn" id="4_aqty2"]
+[ext_resource type="PackedScene" uid="uid://b4oj6cwdijvks" path="res://Scenes/cross_hair.tscn" id="5_m3sle"]
+[ext_resource type="PackedScene" uid="uid://26tdxsw018la" path="res://Scenes/pistol.tscn" id="6_15rte"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bbvb7"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_33eyn"]
+
+[sub_resource type="Animation" id="Animation_h0eya"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraPivot/Camera3D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraPivot/Camera3D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.662256, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CameraPivot/Camera3D:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.175705, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_h1wkw"]
+resource_name = "player_walking_animation"
+length = 2.0
+step = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraPivot/Camera3D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.000270434, -0.25, 0, 0.25, 0, 0, -0.255859, 0.0184671, 0.25, 0, -0.111245, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -0.000335746, -0.264406, 0.0257208, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraPivot/Camera3D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.662256, -0.25, 0, 0.25, 0, 0.828156, -0.25, 0, 0.25, 0, 0.662256, -0.176709, 0.0181921, 0.188422, 0.0286555, 0.824697, -0.25, 0, 0.25, 0, 0.662256, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CameraPivot/Camera3D:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-0.175705, -0.25, 0, 0.25, 0, -0.175705, -0.25, 0, 0.25, 0, -0.175705, -0.25, 0, 0.25, 0, -0.175705, -0.25, 0, 0.25, 0, -0.175705, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x0m63"]
+_data = {
+"RESET": SubResource("Animation_h0eya"),
+"player_walking_animation": SubResource("Animation_h1wkw")
+}
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("joyStick", "cameraDrag", "jumpButton", "crossHair", "fireButton", "adsButton")]
+script = ExtResource("1_g10d1")
+joyStick = NodePath("UI/VirtualJoystick")
+cameraDrag = NodePath("UI/CameraDrag")
+jumpButton = NodePath("UI/JumpButton")
+crossHair = NodePath("UI/CrossHair")
+fireButton = NodePath("UI/FireButton")
+adsButton = NodePath("UI/AdsButton")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_bbvb7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_33eyn")
+
+[node name="CameraPivot" type="Node3D" parent="." groups=["camera_pivot"]]
+script = ExtResource("2_2xheg")
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.662256, -0.175705)
+
+[node name="GunPivot" type="Marker3D" parent="CameraPivot"]
+
+[node name="Pistol" parent="CameraPivot/GunPivot" instance=ExtResource("6_15rte")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.143221, 0.541982, -0.9819)
+
+[node name="AdsCamera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.289, 0.515, -0.3)
+
+[node name="AdsPivot" type="Marker3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.289, 0.515, -0.3)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="CameraDrag" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 569.0
+offset_top = 29.0
+offset_right = 1118.0
+offset_bottom = 609.0
+
+[node name="VirtualJoystick" type="Node2D" parent="UI"]
+position = Vector2(68, 465)
+script = ExtResource("3_e81cw")
+_small_circle_radius = 25
+_big_circle_color = Color(1, 1, 1, 0.9)
+
+[node name="JumpButton" parent="UI" instance=ExtResource("4_aqty2")]
+modulate = Color(1, 1, 1, 0.7)
+offset_left = 926.0
+offset_top = 362.0
+offset_right = -136.0
+offset_bottom = -196.0
+button_text = "Jump"
+_transparancy = 0.7
+
+[node name="CrossHair" parent="UI" instance=ExtResource("5_m3sle")]
+position = Vector2(576, 324)
+
+[node name="FireButton" parent="UI" instance=ExtResource("4_aqty2")]
+modulate = Color(1, 1, 1, 0.7)
+offset_left = 1028.0
+offset_top = 431.0
+offset_right = -34.0
+offset_bottom = -127.0
+button_text = "Fire"
+_transparancy = 0.7
+
+[node name="AdsButton" parent="UI" instance=ExtResource("4_aqty2")]
+modulate = Color(1, 1, 1, 0.7)
+offset_left = 1030.0
+offset_top = 326.0
+offset_right = -32.0
+offset_bottom = -232.0
+button_text = "Ads"
+_transparancy = 0.7
+
+[node name="PlayerWalkingAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_x0m63")
+}
+
+[node name="Foot" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.989639, 0.0195638)
+
+[connection signal="gui_input" from="UI/CameraDrag" to="." method="_on_camera_drag_gui_input"]
+[connection signal="gui_input" from="UI/CameraDrag" to="CameraPivot" method="_on_camera_drag_gui_input"]
+[connection signal="pressed" from="UI/JumpButton" to="." method="_on_jump_button_pressed"]
+[connection signal="pressed" from="UI/FireButton" to="." method="_on_fire_button_pressed"]
+[connection signal="pressed" from="UI/AdsButton" to="." method="_on_ads_button_pressed"]

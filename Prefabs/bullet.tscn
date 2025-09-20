@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://db6je5o0pv5pw"]
+
+[ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_j6gyd"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1hykd"]
+height = 0.1
+radius = 0.02
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_k6sc3"]
+albedo_color = Color(1, 1, 0.12549, 1)
+emission_enabled = true
+emission = Color(1, 0.988235, 0, 1)
+emission_energy_multiplier = 6.11
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_m4h4v"]
+material = SubResource("ORMMaterial3D_k6sc3")
+top_radius = 0.02
+bottom_radius = 0.02
+height = 0.1
+
+[node name="Bullet" type="RigidBody3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("1_j6gyd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_1hykd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_m4h4v")
