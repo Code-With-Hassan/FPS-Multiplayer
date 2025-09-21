@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dowje56rve8dq"]
+[gd_scene load_steps=19 format=3 uid="uid://dowje56rve8dq"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_g10d1"]
 [ext_resource type="Script" path="res://Scripts/CameraPivot.gd" id="2_2xheg"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://b4oj6cwdijvks" path="res://Scenes/cross_hair.tscn" id="5_m3sle"]
 [ext_resource type="PackedScene" uid="uid://26tdxsw018la" path="res://Scenes/pistol.tscn" id="6_15rte"]
 [ext_resource type="PackedScene" uid="uid://c47vintvxpvfe" path="res://Prefabs/pickable_list.tscn" id="7_43dse"]
+[ext_resource type="Script" path="res://Scenes/Weapons.gd" id="8_evlif"]
+[ext_resource type="Script" path="res://Scripts/WeaponSwitcher.gd" id="8_v2trp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bbvb7"]
 
@@ -17,6 +19,10 @@ draw_center = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r5bbx"]
 draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqi2g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tmub7"]
 
 [sub_resource type="Animation" id="Animation_h0eya"]
 length = 0.001
@@ -131,6 +137,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.289, 0.515, -0.3)
 [node name="AdsPivot" type="Marker3D" parent="CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.289, 0.515, -0.3)
 
+[node name="SecondaryGunPivot" type="Marker3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.377631, 0.225689, 0.721914)
+
+[node name="Pistol" parent="CameraPivot/SecondaryGunPivot" instance=ExtResource("6_15rte")]
+transform = Transform3D(0.34202, -0.939693, 0, 0.939693, 0.34202, 0, 0, 0, 1, 0, 0, 0)
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="CameraDrag" type="Control" parent="UI"]
@@ -230,6 +242,51 @@ offset_left = -0.00805664
 offset_top = -0.304016
 offset_right = -0.463989
 offset_bottom = 0.271973
+
+[node name="Weapons" type="HBoxContainer" parent="UI"]
+offset_right = 332.0
+offset_bottom = 69.0
+script = ExtResource("8_evlif")
+
+[node name="LeftWeapon" type="Panel" parent="UI/Weapons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_bqi2g")
+script = ExtResource("8_v2trp")
+
+[node name="Label" type="Label" parent="UI/Weapons/LeftWeapon"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Pistol"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightWeapon" type="Panel" parent="UI/Weapons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_tmub7")
+script = ExtResource("8_v2trp")
+
+[node name="Label" type="Label" parent="UI/Weapons/RightWeapon"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Pistol"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PlayerWalkingAnimation" type="AnimationPlayer" parent="."]
 libraries = {
