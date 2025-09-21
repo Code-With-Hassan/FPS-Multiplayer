@@ -120,9 +120,10 @@ script = ExtResource("2_2xheg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.662256, -0.175705)
 
 [node name="GunPivot" type="Marker3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.143221, 0.541982, -0.9819)
 
 [node name="Pistol" parent="CameraPivot/GunPivot" instance=ExtResource("6_15rte")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.143221, 0.541982, -0.9819)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="AdsCamera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.289, 0.515, -0.3)
@@ -221,14 +222,14 @@ _transparancy = 0.7
 
 [node name="PickableList" parent="UI" instance=ExtResource("7_43dse")]
 anchors_preset = -1
-anchor_left = 0.558
-anchor_top = 0.431
-anchor_right = 0.879
-anchor_bottom = 0.971
-offset_left = 0.18396
-offset_top = -0.288025
-offset_right = 0.391907
-offset_bottom = -0.208069
+anchor_left = 0.579
+anchor_top = 0.573
+anchor_right = 0.832
+anchor_bottom = 0.961
+offset_left = -0.00805664
+offset_top = -0.304016
+offset_right = -0.463989
+offset_bottom = 0.271973
 
 [node name="PlayerWalkingAnimation" type="AnimationPlayer" parent="."]
 libraries = {

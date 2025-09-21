@@ -22,11 +22,16 @@ const JUMP_VELOCITY = 3.5
 var CAMERA_INIT_POSITION : Vector3
 var ads_enabled: bool 
 
+var near_objects = {}
+
 func _ready() -> void:
 	set_plateform_configuration()
 	CAMERA_INIT_POSITION = camera3d.position
 	if has_gun():
 		get_current_gun().isDropped = false
+	Manager.object_picked.connect(func (obj_id):
+		pick_object(obj_id)
+		)
 
 func _physics_process(delta: float) -> void:
 	handle_inputs(delta)
@@ -106,7 +111,7 @@ func set_plateform_configuration():
 		jumpButton.hide()
 		fireButton.hide()
 		adsButton.hide()
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _input(event: InputEvent) -> void:
 	if OS.get_name() == "Windows":
@@ -150,11 +155,25 @@ func has_gun() -> bool:
 func get_current_gun() -> Node3D:
 	return gunPivot.get_child(0);
 
-func show_pickable(texture: Texture2D, head: String, description: String) -> void:
+func show_pickable(texture: Texture2D, head: String, description: String, object) -> void:
+	near_objects[texture.resource_path] = object 
 	pickableList.add_pickable(texture, head, description)
 	
 func hide_pickable(texture: String) -> void:
+	near_objects.erase(texture)
 	pickableList.remove_pickable(texture)
 	
+func get_object_by_id(obj_id) -> Node3D:
+	return near_objects[obj_id]
 	
-	
+func pick_object(obj_id: String) -> void:
+		var obj: Node3D = get_object_by_id(obj_id)
+		var new: Node3D = obj.duplicate()
+		gunPivot.add_child(new)
+		obj.queue_free()
+		new.isDropped = false
+		new.rotation_degrees.x = 0
+		new.rotation_degrees.y = -90
+		var t = get_tree().create_tween()
+		t.tween_property(new, "position", Vector3.ZERO, .2).set_ease(Tween.EASE_OUT)
+		t.play()

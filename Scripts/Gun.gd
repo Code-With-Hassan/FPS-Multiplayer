@@ -39,7 +39,7 @@ func fire_bullet():
 
 func _on_player_detector_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player") and isDropped:
-		body.show_pickable(Icon, Head, Description)
+		body.show_pickable(Icon, Head, Description, self)
 
 func _on_player_detector_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player") and isDropped:

@@ -12,3 +12,9 @@ func setDescription(text: String) -> void:
 	
 func setTexture(texture: Texture2D) -> void:
 	textureRect.texture = texture
+
+func _on_input_gui_input(event: InputEvent) -> void:
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			Manager.object_picked.emit(textureRect.texture.resource_path)
+			queue_free()
