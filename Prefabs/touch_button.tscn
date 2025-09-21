@@ -33,4 +33,5 @@ offset_right = 20.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Jump"
+horizontal_alignment = 1
+vertical_alignment = 1

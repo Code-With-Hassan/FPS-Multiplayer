@@ -16,5 +16,5 @@ func _physics_process(delta: float) -> void:
 func add_bullet_hole(collisionPostion, normal) -> void:
 	var bulletHole = BULLET_HOLE.instantiate()
 	bulletHole.global_position = collisionPostion
-	bulletHole.look_at_from_position(collisionPostion, normal*100)
+	bulletHole.look_at_from_position(collisionPostion, normal * 100)
 	get_tree().get_first_node_in_group("temp_objects").add_child(bulletHole)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dowje56rve8dq"]
+[gd_scene load_steps=15 format=3 uid="uid://dowje56rve8dq"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_g10d1"]
 [ext_resource type="Script" path="res://Scripts/CameraPivot.gd" id="2_2xheg"]
@@ -6,10 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://63yg2ehhic0r" path="res://Prefabs/touch_button.tscn" id="4_aqty2"]
 [ext_resource type="PackedScene" uid="uid://b4oj6cwdijvks" path="res://Scenes/cross_hair.tscn" id="5_m3sle"]
 [ext_resource type="PackedScene" uid="uid://26tdxsw018la" path="res://Scenes/pistol.tscn" id="6_15rte"]
+[ext_resource type="PackedScene" uid="uid://c47vintvxpvfe" path="res://Prefabs/pickable_list.tscn" id="7_43dse"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bbvb7"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_33eyn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4r4yc"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r5bbx"]
+draw_center = false
 
 [sub_resource type="Animation" id="Animation_h0eya"]
 length = 0.001
@@ -91,12 +98,12 @@ _data = {
 "player_walking_animation": SubResource("Animation_h1wkw")
 }
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("joyStick", "cameraDrag", "jumpButton", "crossHair", "fireButton", "adsButton")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("joyStick", "cameraDrag", "jumpButton", "crossHair", "fireButton", "adsButton") groups=["player"]]
 script = ExtResource("1_g10d1")
-joyStick = NodePath("UI/VirtualJoystick")
+joyStick = NodePath("UI/Panel/VirtualJoystick")
 cameraDrag = NodePath("UI/CameraDrag")
 jumpButton = NodePath("UI/JumpButton")
-crossHair = NodePath("UI/CrossHair")
+crossHair = NodePath("UI/Panel2/CrossHair")
 fireButton = NodePath("UI/FireButton")
 adsButton = NodePath("UI/AdsButton")
 
@@ -127,47 +134,101 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.289, 0.515, -0.3)
 
 [node name="CameraDrag" type="Control" parent="UI"]
 layout_mode = 3
-anchors_preset = 0
-offset_left = 569.0
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -7.0
 offset_top = 29.0
-offset_right = 1118.0
-offset_bottom = 609.0
+offset_right = -34.0
+offset_bottom = -39.0
 
-[node name="VirtualJoystick" type="Node2D" parent="UI"]
-position = Vector2(68, 465)
+[node name="Panel" type="Panel" parent="UI"]
+anchors_preset = -1
+anchor_left = 0.069
+anchor_top = 0.702
+anchor_right = 0.169
+anchor_bottom = 0.884
+offset_left = -0.488007
+offset_top = 0.103973
+offset_right = 0.311981
+offset_bottom = 0.167969
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4r4yc")
+
+[node name="VirtualJoystick" type="Node2D" parent="UI/Panel"]
 script = ExtResource("3_e81cw")
 _small_circle_radius = 25
 _big_circle_color = Color(1, 1, 1, 0.9)
 
+[node name="Panel2" type="Panel" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r5bbx")
+
+[node name="CrossHair" parent="UI/Panel2" instance=ExtResource("5_m3sle")]
+position = Vector2(20, 20)
+
 [node name="JumpButton" parent="UI" instance=ExtResource("4_aqty2")]
 modulate = Color(1, 1, 1, 0.7)
-offset_left = 926.0
-offset_top = 362.0
-offset_right = -136.0
-offset_bottom = -196.0
+anchors_preset = -1
+anchor_left = 0.804
+anchor_top = 0.559
+anchor_right = 0.882
+anchor_bottom = 0.698
+offset_left = -0.208008
+offset_top = -0.231995
+offset_right = -0.0640259
+offset_bottom = -0.304016
 button_text = "Jump"
 _transparancy = 0.7
 
-[node name="CrossHair" parent="UI" instance=ExtResource("5_m3sle")]
-position = Vector2(576, 324)
-
 [node name="FireButton" parent="UI" instance=ExtResource("4_aqty2")]
 modulate = Color(1, 1, 1, 0.7)
-offset_left = 1028.0
-offset_top = 431.0
-offset_right = -34.0
-offset_bottom = -127.0
+anchors_preset = -1
+anchor_left = 0.892
+anchor_top = 0.665
+anchor_right = 0.97
+anchor_bottom = 0.804
+offset_left = 0.416016
+offset_top = 0.0799866
+offset_right = 0.559937
+offset_bottom = 0.00799561
 button_text = "Fire"
 _transparancy = 0.7
 
 [node name="AdsButton" parent="UI" instance=ExtResource("4_aqty2")]
 modulate = Color(1, 1, 1, 0.7)
-offset_left = 1030.0
-offset_top = 326.0
-offset_right = -32.0
-offset_bottom = -232.0
+anchors_preset = -1
+anchor_left = 0.894
+anchor_top = 0.523
+anchor_right = 0.972
+anchor_bottom = 0.642
+offset_left = 0.111938
+offset_top = -12.904
+offset_right = 0.255981
+offset_bottom = -0.0160217
 button_text = "Ads"
 _transparancy = 0.7
+
+[node name="PickableList" parent="UI" instance=ExtResource("7_43dse")]
+anchors_preset = -1
+anchor_left = 0.558
+anchor_top = 0.431
+anchor_right = 0.879
+anchor_bottom = 0.971
+offset_left = 0.18396
+offset_top = -0.288025
+offset_right = 0.391907
+offset_bottom = -0.208069
 
 [node name="PlayerWalkingAnimation" type="AnimationPlayer" parent="."]
 libraries = {

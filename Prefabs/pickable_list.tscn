@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://c47vintvxpvfe"]
+
+[ext_resource type="Script" path="res://Scripts/PickableList.gd" id="1_dsiwc"]
+[ext_resource type="Texture2D" uid="uid://bmlornatwea6b" path="res://Assets/Icons/hand.png" id="2_amxnt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8q076"]
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[node name="PickableList" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = -780.0
+offset_bottom = -298.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+script = ExtResource("1_dsiwc")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_right = 370.0
+offset_bottom = 350.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.773
+anchor_top = -0.266
+anchor_right = 0.986
+anchor_bottom = -0.037
+offset_left = 3.98999
+offset_top = -0.900002
+offset_right = 4.17999
+offset_bottom = -1.05
+theme_override_styles/panel = SubResource("StyleBoxFlat_8q076")
+
+[node name="TextureButton" type="TextureButton" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -23.0
+offset_right = 36.0
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+toggle_mode = true
+texture_normal = ExtResource("2_amxnt")
+
+[connection signal="toggled" from="Panel/TextureButton" to="." method="_on_texture_button_toggled"]

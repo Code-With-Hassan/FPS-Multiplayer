@@ -17,14 +17,16 @@ const JUMP_VELOCITY = 3.5
 @onready var AdsPivot = $CameraPivot/AdsPivot
 @onready var AdsCamera = $CameraPivot/AdsCamera3D
 @onready var foot = $Foot
+@onready var pickableList = $UI/PickableList
 
 var CAMERA_INIT_POSITION : Vector3
 var ads_enabled: bool 
 
 func _ready() -> void:
-	
 	set_plateform_configuration()
 	CAMERA_INIT_POSITION = camera3d.position
+	if has_gun():
+		get_current_gun().isDropped = false
 
 func _physics_process(delta: float) -> void:
 	handle_inputs(delta)
@@ -147,3 +149,12 @@ func has_gun() -> bool:
 		
 func get_current_gun() -> Node3D:
 	return gunPivot.get_child(0);
+
+func show_pickable(texture: Texture2D, head: String, description: String) -> void:
+	pickableList.add_pickable(texture, head, description)
+	
+func hide_pickable(texture: String) -> void:
+	pickableList.remove_pickable(texture)
+	
+	
+	

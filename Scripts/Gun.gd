@@ -11,6 +11,11 @@ var fireTime: float
 var cameraPivot 
 var tempObjects
 
+var isDropped : bool = true
+@export var Head: String
+@export var Description: String
+@export var Icon: Texture2D
+
 func _physics_process(delta: float) -> void:
 	fireTime += delta
 
@@ -30,3 +35,12 @@ func fire_bullet():
 		bullet.look_at(cameraPivot.get_target_position())
 		bullet.direction = bullet.global_position.direction_to(cameraPivot.get_target_position())
 		fireTime = 0
+
+
+func _on_player_detector_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player") and isDropped:
+		body.show_pickable(Icon, Head, Description)
+
+func _on_player_detector_body_exited(body: Node3D) -> void:
+	if body.is_in_group("player") and isDropped:
+		body.hide_pickable(Icon.resource_path)
