@@ -10,8 +10,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	self.visible = pickableContainer.get_child_count() > 0
-	if pickableContainer.get_child_count() > 0:
-		print("show")
 
 func add_pickable(texture: Texture2D, head: String, description: String):
 	var newPickable = PICKABLE.instantiate()
