@@ -15,14 +15,14 @@ func _physics_process(delta: float) -> void:
 
 func add_pickable(texture: Texture2D, head: String, description: String):
 	var newPickable = PICKABLE.instantiate()
+	pickableContainer.add_child(newPickable)
 	newPickable.setHead(head)
 	newPickable.setDescription(description)
 	newPickable.setTexture(texture)
-	pickableContainer.add_child(newPickable)
 	
 func remove_pickable(texture: String):
 	for i in pickableContainer.get_children():
-		if i.texture_rect.texture.resource_path == texture:
+		if i.textureRect.texture.resource_path == texture:
 			pickableContainer.remove_child(i)
 			break
 

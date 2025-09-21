@@ -8,7 +8,7 @@ func setHead(text: String) -> void:
 	head.text = text
 	
 func setDescription(text: String) -> void:
-	head.text = text
+	Description.text = text
 	
 func setTexture(texture: Texture2D) -> void:
 	textureRect.texture = texture
