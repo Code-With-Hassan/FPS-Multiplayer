@@ -111,7 +111,7 @@ func set_plateform_configuration():
 		jumpButton.hide()
 		fireButton.hide()
 		adsButton.hide()
-		#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _input(event: InputEvent) -> void:
 	if OS.get_name() == "Windows":
